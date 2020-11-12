@@ -6,6 +6,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - uses: actions/cache@v2
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-venv-
+
       - uses: actions/setup-python@v1
         with:
           python-version: 3.8
@@ -18,7 +32,10 @@ jobs:
           azdev setup -r .
           azdev extension build imds
 
+          WHEEL=$(find ./dist -name "*.whl" -printf "%p")
+          echo "WHEEL=$WHEEL" >> $GITHUB_ENV
+
       - uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist
+          path: ${{ env.WHEEL }}
