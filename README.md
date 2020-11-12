@@ -19,7 +19,7 @@ Command group 'imds' is in preview. It may be changed/removed in a future releas
 {
   "localIdentityEndpoint": "http://127.0.0.1:44421/MSI/token",
   "dockerIdentityEndpoint": "http://host.docker.internal:44421/MSI/token",
-  "identityHeader": "44421"
+  "identityHeader": "1038546b-736e-43fd-bf36-bf970c7bc236"
 }
 ```
 
