@@ -1,4 +1,4 @@
 {
     "azext.isExperimental": true,
-    "azext.minCliCoreVersion": "2.14"
+    "azext.minCliCoreVersion": "2.5"
 }
