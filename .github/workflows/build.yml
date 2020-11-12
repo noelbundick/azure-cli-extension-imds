@@ -1,0 +1,24 @@
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install pip --upgrade
+          python -m pip install -r requirements.txt
+          azdev setup -r .
+          azdev extension build imds
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
