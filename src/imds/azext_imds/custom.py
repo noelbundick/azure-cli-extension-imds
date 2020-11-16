@@ -12,7 +12,10 @@ handler_map = {
 }
 
 
-def start_imds(cmd, secret=str(uuid4()), host="", port=0, imds_type="AppService2017"):
+def start_imds(cmd, secret="", host="", port=0, imds_type="AppService2017"):
+    if not secret:
+        secret = str(uuid4())
+
     def handler(*args):
         handler_map[imds_type](secret, cmd, *args)
 

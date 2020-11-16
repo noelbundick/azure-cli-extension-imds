@@ -41,7 +41,7 @@ class AppService2017IMDS(BaseHTTPRequestHandler):
             self.send_response(400)
             return
 
-        cli_token = get_access_token(self.cmd)
+        cli_token = get_access_token(self.cmd, resource=resource)
         jwt = cli_token["accessToken"]
         payload = json.loads(b64decode(jwt.split(".")[1] + "==="))
 
@@ -94,7 +94,7 @@ class AppService2019IMDS(BaseHTTPRequestHandler):
             self.send_response(400)
             return
 
-        cli_token = get_access_token(self.cmd)
+        cli_token = get_access_token(self.cmd, resource=resource)
         jwt = cli_token["accessToken"]
         payload = json.loads(b64decode(jwt.split(".")[1] + "==="))
 
