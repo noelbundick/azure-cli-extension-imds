@@ -48,7 +48,7 @@ class AppService2017IMDS(BaseHTTPRequestHandler):
         token = {
             "access_token": cli_token["accessToken"],
             "client_id": "",
-            "expires_on": str(payload["exp"])
+            "expires_on": payload["exp"],
             "not_before": str(payload["nbf"]),
             "resource": resource,
             "token_type": "Bearer",
