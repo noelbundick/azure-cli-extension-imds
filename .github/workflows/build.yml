@@ -6,23 +6,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: .venv
           key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-venv-
 
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.8
 
@@ -37,7 +37,7 @@ jobs:
           WHEEL=$(find ./dist -name "*.whl" -printf "%p")
           echo "WHEEL=$WHEEL" >> $GITHUB_ENV
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: ${{ env.WHEEL }}
